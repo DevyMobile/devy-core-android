@@ -1,0 +1,37 @@
+plugins {
+    alias libs.plugins.android.library
+    alias libs.plugins.kotlin.android
+    alias libs.plugins.ksp
+    alias libs.plugins.hilt
+    alias libs.plugins.compose.compiler
+}
+
+apply from: rootProject.file("android.gradle")
+apply from: rootProject.file("hiltDependencies.gradle")
+apply from: rootProject.file("group.gradle")
+
+android {
+    namespace 'com.devy.network'
+
+    hilt {
+        enableAggregatingTask = true
+    }
+}
+
+dependencies {
+
+    implementation libs.moshi.adapters
+    implementation libs.moshi.kotlin
+    implementation libs.moshi.kotlin.codegen
+    implementation libs.retrofit
+    implementation libs.gson
+    implementation libs.okhttp3.logging.interceptor
+    implementation libs.bundles.retrofit
+    implementation libs.timber
+    implementation project(":global")
+    ksp(libs.moshi.kotlin.codegen)
+    ksp(libs.moshi.adapters)
+
+    testImplementation libs.junit
+    testImplementation libs.okhttp3.mockwebserver
+}
