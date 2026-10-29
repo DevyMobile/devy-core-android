@@ -20,8 +20,9 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "DevyCore"
-include ':global'
-include ':network'
-include ':core:core-ui'
 include ':core:app'
+include ':core:core-ui'
 include ':foundation:datastore'
+include ':network'
+include ':global'
+include ':foundation:dynamodb'
