@@ -1,0 +1,26 @@
+plugins {
+    alias libs.plugins.android.library
+    alias libs.plugins.kotlin.android
+    alias libs.plugins.ksp
+    alias libs.plugins.hilt
+    alias libs.plugins.compose.compiler
+}
+
+apply from: rootProject.file("android.gradle")
+apply from: rootProject.file("hiltDependencies.gradle")
+apply from: rootProject.file("group.gradle")
+
+android {
+    namespace 'com.devy.foundation.datastore'
+
+    hilt {
+        enableAggregatingTask = true
+    }
+}
+
+dependencies {
+
+    // datastore
+    implementation libs.crypto.datastore.preferences
+    implementation libs.json.serialization
+}
