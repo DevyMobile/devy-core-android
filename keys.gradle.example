@@ -1,0 +1,6 @@
+// 이 파일을 keys.gradle 로 복사하고 값을 채운다. keys.gradle 은 git 에 포함되지 않는다.
+// :foundation:dynamodb 가 BuildConfig.AWS_IDENTITY_POOL_ID 로 사용한다.
+ext {
+    // Amazon Cognito Identity Pool ID. 예: "ap-northeast-2:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    aws_identity_pool_id = ""
+}

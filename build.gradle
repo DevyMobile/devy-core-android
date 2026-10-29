@@ -1,0 +1,29 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+    dependencies {
+        classpath files(libs.class.superclass.protectionDomain.codeSource.location)
+    }
+}
+
+plugins {
+    alias libs.plugins.android.application apply false
+    alias libs.plugins.android.library apply false
+    alias libs.plugins.kotlin.android apply false
+    alias libs.plugins.kotlin.jvm apply false
+    alias libs.plugins.ksp apply false
+    alias libs.plugins.hilt apply false
+}
+
+// keys.gradle 은 저장소에 포함하지 않는다. keys.gradle.example 을 복사해 값을 채운다.
+def keysFile = file("$rootDir/keys.gradle")
+if (keysFile.exists()) {
+    apply from: keysFile
+} else {
+    logger.warn("keys.gradle 이 없어 :foundation:dynamodb 의 AWS_IDENTITY_POOL_ID 가 빈 값으로 빌드된다. keys.gradle.example 참고.")
+    ext { aws_identity_pool_id = "" }
+}

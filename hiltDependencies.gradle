@@ -1,0 +1,4 @@
+dependencies {
+    implementation libs.bundles.hilt
+    ksp libs.bundles.hilt.ksp
+}
