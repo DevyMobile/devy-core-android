@@ -1,0 +1,29 @@
+plugins {
+    alias libs.plugins.android.library
+    alias libs.plugins.kotlin.android
+    alias libs.plugins.ksp
+    alias libs.plugins.hilt
+    alias libs.plugins.compose.compiler
+}
+
+apply from: rootProject.file("android.gradle")
+apply from: rootProject.file("composeDependencies.gradle")
+apply from: rootProject.file("hiltDependencies.gradle")
+apply from: rootProject.file("group.gradle")
+
+android {
+    namespace 'com.devy.core_ui'
+
+    hilt {
+        enableAggregatingTask = true
+    }
+}
+
+dependencies {
+
+    implementation libs.bundles.coil
+    implementation libs.androidx.core.ktx
+    implementation libs.material
+
+    implementation libs.bundles.richtext
+}
