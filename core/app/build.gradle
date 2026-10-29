@@ -1,0 +1,30 @@
+plugins {
+    alias libs.plugins.android.library
+    alias libs.plugins.kotlin.android
+    alias libs.plugins.ksp
+    alias libs.plugins.hilt
+    alias libs.plugins.compose.compiler
+}
+
+apply from: rootProject.file("android.gradle")
+apply from: rootProject.file("composeDependencies.gradle")
+apply from: rootProject.file("hiltDependencies.gradle")
+apply from: rootProject.file("group.gradle")
+
+android {
+    namespace 'com.devy.app'
+
+    hilt {
+        enableAggregatingTask = true
+    }
+}
+
+dependencies {
+
+    def composeBom = platform(libs.compose.bom)
+    implementation(composeBom)
+    implementation(libs.compose.ui)
+
+    implementation libs.navigation.compose
+    implementation project(":core:core-ui")
+}
